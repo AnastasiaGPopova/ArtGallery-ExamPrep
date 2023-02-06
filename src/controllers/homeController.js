@@ -24,15 +24,24 @@ exports.getProfilePage = async (req,res) => {
     const publicationsByUser = await Publication.find({author: req.user._id}).lean()
     console.log(publicationsByUser)
 
+    let shared = publicationsSharedByUser.map(h => h.title)
+    let publicated = publicationsByUser.map(h => h.title)
 
-    
-    const shared = publicationsSharedByUser.map(h => h.title)
-    const publicated = publicationsByUser.map(h => h.title)
-    console.log(shared)
-    console.log(publicated)
+    let isShared = false
+    let isPublicated = false
+
+    if(shared.length > 0){
+        isShared = true
+    }
+
+    if(publicated.length > 0){
+        isPublicated = true
+    }
+    shared = shared.join(', ')
+    publicated = publicated.join(', ')
 
 
-    res.render('profile', {currentUser, shared, publicated})
+    res.render('profile', {currentUser, shared, publicated, isShared, isPublicated})
 
 }
 

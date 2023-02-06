@@ -4,12 +4,12 @@ const publicationSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        //minLength: [6, "Too short! Title should be at least 6 characters !"]
+        minLength: [6, "Too short! Title should be at least 6 characters !"]
     }, 
     technique : {
         type: String,
         required: true,
-        //minLength: [6, "Too short! Keyword should be at least 6 characters !"]
+        maxLength: [15, "Too long! Technique should max 15 characters !"]
     },
     imgUrl: {
         type: String,
@@ -26,13 +26,7 @@ const publicationSchema = new mongoose.Schema({
     certificate: {
         type: String,
         required: true,
-        // options: [{ 
-        //     key: yes, 
-        //     value: ["Yes", `Accepts only "Yes" or "No"!`]
-        //   }, { 
-        //     key: no, 
-        //     value: ["No", `Accepts only "Yes" or "No"!`]
-        //   }]
+        enum: { values:["Yes", "No"], message:'Certificate field can be only "Yes" or "No"!'}
         //minLength: [10, "Date should be 10 characters !"],
         //maxLength: [10, "Date should be 10 characters !"]
     },

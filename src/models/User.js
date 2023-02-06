@@ -5,15 +5,17 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        // minLength: [3, "First name should be at least 3 characters long!"]
+        minLength: [4, "Username should be at least 3 characters long!"]
     },
     password: {
         type: String,
         required: true,
+        minLength: [3, "Password should be at least 3 characters long!"]
     },
     address: {
         type: String,
         required: true,
+        maxLength: [20, "Address should be max 20 characters long!"]
     //     match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
     //     minLength: [3, 'Email should be at least 3 charecters!']
     },
